@@ -1,0 +1,38 @@
+[
+{
+  "directory": "J:/tmp/PAS/build",
+  "command": "C:\\PROGRA~2\\Dev-Cpp\\MinGW64\\bin\\G__~1.EXE  @CMakeFiles/PAS.dir/includes_CXX.rsp  -Wall -std=c++2a -fexec-charset=UTF-8 -g -o CMakeFiles\\PAS.dir\\src\\admin.cpp.obj -c J:\\tmp\\PAS\\src\\admin.cpp",
+  "file": "J:/tmp/PAS/src/admin.cpp",
+  "output": "CMakeFiles/PAS.dir/src/admin.cpp.obj"
+},
+{
+  "directory": "J:/tmp/PAS/build",
+  "command": "C:\\PROGRA~2\\Dev-Cpp\\MinGW64\\bin\\G__~1.EXE  @CMakeFiles/PAS.dir/includes_CXX.rsp  -Wall -std=c++2a -fexec-charset=UTF-8 -g -o CMakeFiles\\PAS.dir\\src\\info.cpp.obj -c J:\\tmp\\PAS\\src\\info.cpp",
+  "file": "J:/tmp/PAS/src/info.cpp",
+  "output": "CMakeFiles/PAS.dir/src/info.cpp.obj"
+},
+{
+  "directory": "J:/tmp/PAS/build",
+  "command": "C:\\PROGRA~2\\Dev-Cpp\\MinGW64\\bin\\G__~1.EXE  @CMakeFiles/PAS.dir/includes_CXX.rsp  -Wall -std=c++2a -fexec-charset=UTF-8 -g -o CMakeFiles\\PAS.dir\\src\\main.cpp.obj -c J:\\tmp\\PAS\\src\\main.cpp",
+  "file": "J:/tmp/PAS/src/main.cpp",
+  "output": "CMakeFiles/PAS.dir/src/main.cpp.obj"
+},
+{
+  "directory": "J:/tmp/PAS/build",
+  "command": "C:\\PROGRA~2\\Dev-Cpp\\MinGW64\\bin\\G__~1.EXE  @CMakeFiles/PAS.dir/includes_CXX.rsp  -Wall -std=c++2a -fexec-charset=UTF-8 -g -o CMakeFiles\\PAS.dir\\src\\obj.cpp.obj -c J:\\tmp\\PAS\\src\\obj.cpp",
+  "file": "J:/tmp/PAS/src/obj.cpp",
+  "output": "CMakeFiles/PAS.dir/src/obj.cpp.obj"
+},
+{
+  "directory": "J:/tmp/PAS/build",
+  "command": "C:\\PROGRA~2\\Dev-Cpp\\MinGW64\\bin\\G__~1.EXE  @CMakeFiles/PAS.dir/includes_CXX.rsp  -Wall -std=c++2a -fexec-charset=UTF-8 -g -o CMakeFiles\\PAS.dir\\src\\show.cpp.obj -c J:\\tmp\\PAS\\src\\show.cpp",
+  "file": "J:/tmp/PAS/src/show.cpp",
+  "output": "CMakeFiles/PAS.dir/src/show.cpp.obj"
+},
+{
+  "directory": "J:/tmp/PAS/build",
+  "command": "C:\\PROGRA~2\\Dev-Cpp\\MinGW64\\bin\\G__~1.EXE  @CMakeFiles/PAS.dir/includes_CXX.rsp  -Wall -std=c++2a -fexec-charset=UTF-8 -g -o CMakeFiles\\PAS.dir\\src\\user.cpp.obj -c J:\\tmp\\PAS\\src\\user.cpp",
+  "file": "J:/tmp/PAS/src/user.cpp",
+  "output": "CMakeFiles/PAS.dir/src/user.cpp.obj"
+}
+]

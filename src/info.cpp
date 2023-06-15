@@ -18,22 +18,41 @@ Score::Score(int ms, int ls, int ps, int mjs) {
 }
 
 void Score::setMathScore(int x) {
+  if (x < 0 || x > 150) {
+    throw "Math score is out of range.";
+  }
   mathScore = x;
+  totalScore = mathScore + languageScore + politicsScore + majorScore;
 }
 
 void Score::setLanguageScore(int x) {
+  if (x < 0 || x > 100) {
+    throw "Language score is out of range.";
+  }
   languageScore = x;
+  totalScore = mathScore + languageScore + politicsScore + majorScore;
 }
 
 void Score::setPoliticsScore(int x) {
+  if (x < 0 || x > 100) {
+    throw "Politics score is out of range.";
+  }
   politicsScore = x;
+  totalScore = mathScore + languageScore + politicsScore + majorScore;
 }
 
 void Score::setMajorScore(int x) {
+  if (x < 0 || x > 150) {
+    throw "Major score is out of range.";
+  }
   majorScore = x;
+  totalScore = mathScore + languageScore + politicsScore + majorScore;
 }
 
 void Score::setTotalScore(int x) {
+  if (x < 0 || x > 500) {
+    throw "Total score is out of range.";
+  }
   totalScore = x;
 }
 

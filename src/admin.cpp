@@ -63,9 +63,6 @@ Admin::~Admin() {
 void Admin::setScoreLine() {
   flush(), showTitle();
   int x;
-  std::cout << "请输入总分分数线:";
-  std::cin >> x;
-  scoreLine.setTotalScore(x);
   std::cout << "请输入数学分数线:";
   std::cin >> x;
   scoreLine.setMathScore(x);
@@ -78,6 +75,9 @@ void Admin::setScoreLine() {
   std::cout << "请输入专业课分数线:";
   std::cin >> x;
   scoreLine.setMajorScore(x);
+  std::cout << "请输入总分分数线:";
+  std::cin >> x;
+  scoreLine.setTotalScore(x);
   std::cout << "设置成功" << std::endl;
   system("pause");
 }
@@ -128,30 +128,107 @@ void Admin::updateInfo() {
   std::cin >> id;
   if (studInfo.find(id) == nullptr) {
     std::cout << "不存在该准考证号的考生" << std::endl;
+    system("pause");
     return;
   }
-  std::cout << "请输入要修改的考生的姓名:";
-  std::string name;
-  std::cin >> name;
-  std::cout << "请输入要修改的考生的专业:";
-  std::string major;
-  std::cin >> major;
-  std::cout << "请输入要修改的考生的是否为应届生:";
-  std::string isF;
-  std::cin >> isF;
-  std::cout << "请输入要修改的考生的数学成绩:";
-  int mathScore;
-  std::cin >> mathScore;
-  std::cout << "请输入要修改的考生的外语成绩:";
-  int languageScore;
-  std::cin >> languageScore;
-  std::cout << "请输入要修改的考生的政治成绩:";
-  int politicsScore;
-  std::cin >> politicsScore;
-  std::cout << "请输入要修改的考生的专业课成绩:";
-  int majorScore;
-  std::cin >> majorScore;
-  studInfo.update(id, StudInfo(name, id, major, isF == "true", Score(mathScore, languageScore, politicsScore, majorScore)));
+  
+  auto p = studInfo.find(id)->getData().getInfo();
+  
+  int opt;
+  std::cout << "是否需要修改考生的姓名（1/0）:";
+  std::cin >> opt;
+  if (opt == 1) {
+    std::cout << "请输入考生的新姓名:";
+    std::string name;
+    std::cin >> name;
+    p.setName(name);
+    studInfo.update(id, p);
+  }
+  
+  std::cout << "是否需要修改考生的专业（1/0）:";
+  std::cin >> opt;
+  if (opt == 1) {
+    std::cout << "请输入考生的新专业:";
+    std::string major;
+    std::cin >> major;
+    p.setMajor(major);
+    studInfo.update(id, p);
+  }
+  
+  std::cout << "是否需要修改考生的是否为应届生（1/0）:";
+  std::cin >> opt;
+  if (opt == 1) {
+    std::cout << "请输入考生的新是否为应届生:";
+    std::string isF;
+    std::cin >> isF;
+    p.setIsF(isF == "true");
+    studInfo.update(id, p);
+  }
+  
+  std::cout << "是否需要修改考生的数学成绩（1/0）:";
+  std::cin >> opt;
+  if (opt == 1) {
+    std::cout << "请输入考生的新数学成绩:";
+    int mathScore;
+    std::cin >> mathScore;
+    try {
+      p.setScore("math", mathScore);
+      studInfo.update(id, p);
+    } catch (const char *e) {
+      std::cout << e << std::endl;
+      system("pause");
+      return;
+    }
+  }
+  
+  std::cout << "是否需要修改考生的外语成绩（1/0）:";
+  std::cin >> opt;
+  if (opt == 1) {
+    std::cout << "请输入考生的新外语成绩:";
+    int languageScore;
+    std::cin >> languageScore;
+    try {
+      p.setScore("language", languageScore);
+      studInfo.update(id, p);
+    } catch (const char *e) {
+      std::cout << e << std::endl;
+      system("pause");
+      return;
+    }
+  }
+
+  std::cout << "是否需要修改考生的政治成绩（1/0）:";
+  std::cin >> opt;
+  if (opt == 1) {
+    std::cout << "请输入考生的新政治成绩:";
+    int politicsScore;
+    std::cin >> politicsScore;
+    try {
+      p.setScore("politics", politicsScore);
+      studInfo.update(id, p);
+    } catch (const char *e) {
+      std::cout << e << std::endl;
+      system("pause");
+      return;
+    }
+  }
+
+  std::cout << "是否需要修改考生的专业课成绩（1/0）:";
+  std::cin >> opt;
+  if (opt == 1) {
+    std::cout << "请输入考生的新专业课成绩:";
+    int majorScore;
+    std::cin >> majorScore;
+    try {
+      p.setScore("major", majorScore);
+      studInfo.update(id, p);
+    } catch (const char *e) {
+      std::cout << e << std::endl;
+      system("pause");
+      return;
+    }
+  }
+
   std::cout << "修改成功" << std::endl;
   system("pause");
 }
@@ -189,19 +266,50 @@ void Admin::insertInfo() {
   std::cout << "请输入要添加的考生的是否为应届生:";
   std::string isF;
   std::cin >> isF;
+
+  Score p;
   std::cout << "请输入要添加的考生的数学成绩:";
   int mathScore;
   std::cin >> mathScore;
+  try {
+    p.setMathScore(mathScore);
+  } catch (const char *e) {
+    std::cout << e << std::endl;
+    system("pause");
+    return;
+  }
+
   std::cout << "请输入要添加的考生的外语成绩:";
   int languageScore;
   std::cin >> languageScore;
+  try {
+    p.setLanguageScore(languageScore);
+  } catch (const char *e) {
+    std::cout << e << std::endl;
+    system("pause");
+    return;
+  }
   std::cout << "请输入要添加的考生的政治成绩:";
   int politicsScore;
   std::cin >> politicsScore;
+  try {
+    p.setPoliticsScore(politicsScore);
+  } catch (const char *e) {
+    std::cout << e << std::endl;
+    system("pause");
+    return;
+  }
   std::cout << "请输入要添加的考生的专业课成绩:";
   int majorScore;
   std::cin >> majorScore;
-  studInfo.insert(id, StudInfo(name, id, major, isF == "true", Score(mathScore, languageScore, politicsScore, majorScore)));
+  try {
+    p.setMajorScore(majorScore);
+  } catch (const char *e) {
+    std::cout << e << std::endl;
+    system("pause");
+    return;
+  }
+  studInfo.insert(id, StudInfo(name, id, major, isF == "true", p));
   std::cout << "添加成功" << std::endl;
   system("pause");
 }
@@ -218,7 +326,7 @@ void Admin::displayInfo() {
   }
   auto p = *studInfo.find(id);
   std::cout << "该考生的信息为：" << std::endl;
-  std::cout << p.getData().getInfo() << std::endl;
+  std::cout << p.getData().getInfo() << " " << p.getData().getInfo().getScore().getTotalScore() << std::endl;
   system("pause");
 }
 
@@ -235,7 +343,7 @@ void Admin::showAccessInfo() {
   std::cout << "录取人数：" << arr.size() << std::endl;
   std::cout << "录取名单：" << std::endl;
   for (int i = 0; i < arr.size(); i++) {
-    std::cout << arr[i] << std::endl;
+    std::cout << arr[i] << " " << arr[i].getScore().getTotalScore() << std::endl;
   }
   system("pause");
   
@@ -256,7 +364,7 @@ void Admin::exportAccessInfo() {
   ofs << "录取人数：" << arr.size() << std::endl;
   ofs << "录取名单：" << std::endl;
   for (int i = 0; i < arr.size(); i++) {
-    ofs << arr[i] << std::endl;
+    ofs << arr[i] << " " << arr[i].getScore().getTotalScore() << std::endl;
   }
   std::cout << "导出成功" << std::endl;
   ofs.close();
@@ -281,6 +389,9 @@ void Admin::solveWorkOrder() {
       std::cout << "请输入要处理的考号(输入-1退出):";
       std::string num;
       std::cin >> num;
+      if (num == "-1") {
+        break;
+      }
       if (workOrder.find(num) == nullptr) {
         std::cout << "请输入正确的考号" << std::endl;
         system("pause");
@@ -293,22 +404,51 @@ void Admin::solveWorkOrder() {
       int flag;
       std::cin >> flag;
       if (flag == 1) {
+        Score sc;
         int mathScore, languageScore, politicsScore, majorScore;
         std::cout << "请输入该考生的数学成绩:";
         std::cin >> mathScore;
+        try {
+          sc.setMathScore(mathScore);
+        } catch (const char *e) {
+          std::cout << e << std::endl;
+          system("pause");
+          continue;
+        }
         std::cout << "请输入该考生的外语成绩:";
         std::cin >> languageScore;
+        try {
+          sc.setLanguageScore(languageScore);
+        } catch (const char *e) {
+          std::cout << e << std::endl;
+          system("pause");
+          continue;
+        }
         std::cout << "请输入该考生的政治成绩:";
         std::cin >> politicsScore;
+        try {
+          sc.setPoliticsScore(politicsScore);
+        } catch (const char *e) {
+          std::cout << e << std::endl;
+          system("pause");
+          continue;
+        }
         std::cout << "请输入该考生的专业课成绩:";
         std::cin >> majorScore;
+        try {
+          sc.setMajorScore(majorScore);
+        } catch (const char *e) {
+          std::cout << e << std::endl;
+          system("pause");
+          continue;
+        }
         auto p = *studInfo.find(num);
         auto name = p.getData().getInfo().getName();
         auto id = p.getData().getInfo().getId();
         auto major = p.getData().getInfo().getMajor();
         auto isF = p.getData().getInfo().getIsF();
 
-        studInfo.update(id, StudInfo(name, id, major, isF, Score(mathScore, languageScore, politicsScore, majorScore)));
+        studInfo.update(id, StudInfo(name, id, major, isF, sc));
         
         workOrder.erase(num);
         annouce.insert(num + " true");
