@@ -231,8 +231,9 @@ void Admin::showAccessInfo() {
   }
   std::cout << "录取名单" << std::endl;
   std::cout << "录取分数线：" << scoreLine.getTotalScore() << std::endl;
-  std::cout << "录取名单：" << std::endl;
   auto arr = getAccessInfo();
+  std::cout << "录取人数：" << arr.size() << std::endl;
+  std::cout << "录取名单：" << std::endl;
   for (int i = 0; i < arr.size(); i++) {
     std::cout << arr[i] << std::endl;
   }
@@ -251,8 +252,9 @@ void Admin::exportAccessInfo() {
   std::ofstream ofs("accessList.txt", std::ios::out);
   ofs << "录取名单" << std::endl;
   ofs << "录取分数线：" << scoreLine.getTotalScore() << std::endl;
-  ofs << "录取名单：" << std::endl;
   auto arr = getAccessInfo();
+  ofs << "录取人数：" << arr.size() << std::endl;
+  ofs << "录取名单：" << std::endl;
   for (int i = 0; i < arr.size(); i++) {
     ofs << arr[i] << std::endl;
   }
